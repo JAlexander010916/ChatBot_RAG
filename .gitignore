@@ -1,0 +1,99 @@
+# ==========================================
+# PYTHON VIRTUAL ENV
+# ==========================================
+.venv/
+venv/
+env/
+
+# ==========================================
+# PYTHON CACHE / TEMP
+# ==========================================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ==========================================
+# NODE.JS
+# ==========================================
+node_modules/
+frontend/node_modules/
+
+# ==========================================
+# FRONTEND BUILD ARTIFACTS
+# ==========================================
+frontend/dist/
+frontend/.vite/
+dist/
+build/
+
+# ==========================================
+# PYINSTALLER / PACKAGING
+# ==========================================
+*.spec
+*.exe
+*.msi
+*.iss
+*.toc
+*.pyz
+
+# ==========================================
+# LOCAL DATABASES
+# ==========================================
+*.db
+*.sqlite
+*.sqlite3
+
+# ==========================================
+# APP RUNTIME DATA (USER FILES)
+# ==========================================
+backend/documentos/*
+!backend/documentos/.gitkeep
+backend/evaluation
+
+# If you generate frontend assets into backend/static, ignore them:
+backend/static/assets/
+backend/static/index.html
+
+# Cache de respuestas del informe de preguntas (se regenera ejecutando el script)
+backend/evaluation/_preguntas_respuestas_cache.json
+
+# ==========================================
+# ENV / SECRETS
+# ==========================================
+.env
+.env.*
+!.env.example
+!.env.production.example
+
+# ==========================================
+# LOGS
+# ==========================================
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# ==========================================
+# EDITORS / IDE
+# ==========================================
+.vscode/
+.idea/
+.cursor/
+
+# ==========================================
+# OS
+# ==========================================
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# TEMP FILES
+# ==========================================
+*.tmp
+*.temp

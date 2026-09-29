@@ -1,0 +1,119 @@
+.chat-sessions-sidebar {
+  width: 320px;
+  background-color: var(--bg-primary);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-sessions-header {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-sessions-header h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.chat-sessions-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chat-sessions-empty {
+  text-align: center;
+  color: var(--text-tertiary);
+  padding: 16px;
+}
+
+.chat-sessions-empty p {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.chat-sessions-empty small {
+  font-size: 11px;
+}
+
+.chat-session-item {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: #fff;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.chat-session-item.is-active {
+  border-color: #2563eb;
+  background-color: #eff6ff;
+}
+
+.chat-session-select {
+  flex: 1;
+  border: none;
+  background: transparent;
+  text-align: left;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.chat-session-select:hover {
+  background-color: #f9fafb;
+}
+
+.chat-session-item.is-active .chat-session-select:hover {
+  background-color: #dbeafe;
+}
+
+.chat-session-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+
+.chat-session-meta {
+  font-size: 11px;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.chat-session-delete {
+  border: none;
+  border-left: 1px solid var(--border);
+  background: transparent;
+  width: 38px;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.chat-session-delete:hover {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+@media (max-width: 768px) {
+  .chat-sessions-sidebar {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    max-height: 200px;
+  }
+}
