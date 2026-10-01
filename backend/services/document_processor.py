@@ -67,7 +67,7 @@ class DocumentProcessor:
             raise
 
     @staticmethod
-    def _(filepath: Path) -> Dict[str, Any]:
+    def _process_pdf(filepath: Path) -> Dict[str, Any]:
         """
         Extrae texto de un archivo PDF
         Args:

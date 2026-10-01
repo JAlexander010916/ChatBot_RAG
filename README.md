@@ -1,6 +1,6 @@
 # Chat Document AI
 
-Aplicación para cargar documentos PDF y DOCX, generar embeddings locales con Ollama y hacer preguntas sobre el contenido mediante una interfaz web.
+Aplicación para cargar documentos PDF, DOCX, DOC generar embeddings locales con Ollama y hacer preguntas sobre el contenido mediante una interfaz web.
 
 ## Estructura del proyecto
 
@@ -78,6 +78,8 @@ npm install
 
 ### 1. Iniciar Ollama
 
+**Para que el modelo corra tienes que poner un VPN
+
 ```bash
 ollama run gemma4:cloud
 ```
@@ -102,7 +104,7 @@ npm run dev
 
 ## Flujo de uso
 
-1. Carga uno o varios documentos PDF/DOCX.
+1. Carga uno o varios documentos PDF/DOCX/DOC.
 2. Espera el estado de carga de embeddings.
 3. Cuando el sistema indique que los embeddings están listos, ya puedes hacer preguntas.
 

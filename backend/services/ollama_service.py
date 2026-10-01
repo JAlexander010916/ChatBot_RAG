@@ -44,6 +44,19 @@ class OllamaService:
         """Detecta modelos servidos por Ollama Cloud (sufijo ':cloud')."""
         return ":" in model_name and model_name.rsplit(":", 1)[1].lower() == "cloud"
 
+    def _format_ollama_http_error(self, status_code: int, body: str, operation: str) -> str:
+        """Convierte un error HTTP de Ollama en un mensaje legible."""
+        body_text = (body or "").strip()
+        if status_code in (401, 403):
+            return (
+                f"Ollama Cloud rechazó la petición al ejecutar '{operation}' (HTTP {status_code}). "
+                f"Comprueba dos cosas: (1) que Ollama sea version >= 0.18 "
+                f"(tu instalacion actual puede ser antigua) y (2) que la sesion este iniciada "
+                f"con 'ollama signin'. Modelo de chat configurado: {self.chat_model}. "
+                f"Respuesta de Ollama: {body_text or 'sin detalle'}"
+            )
+        return f"Error de Ollama al ejecutar '{operation}' (HTTP {status_code}): {body_text or 'sin detalle'}"
+
     def _is_required_model_installed(self, required_model: str, installed_models: List[str]) -> bool:
         # Los modelos cloud no siempre aparecen en /api/tags. Si hay conexion con
         # Ollama y el modelo termina en ':cloud', la peticion se encola hacia
@@ -117,7 +130,7 @@ class OllamaService:
             payload = {"model": self.embedding_model, "prompt": text}
             response = requests.post(self.embedding_endpoint, json=payload, timeout=self.embedding_timeout_seconds)
             if response.status_code != 200:
-                raise Exception(f"Error: {response.text}")
+                raise Exception(self._format_ollama_http_error(response.status_code, response.text, "embeddings"))
             result = response.json()
             if 'embedding' in result:
                 return result['embedding']
@@ -210,7 +223,7 @@ PREGUNTA:
             }
             response = requests.post(self.chat_endpoint, json=payload, timeout=self.chat_timeout_seconds)
             if response.status_code != 200:
-                raise Exception(f"Error: {response.text}")
+                raise Exception(self._format_ollama_http_error(response.status_code, response.text, "chat"))
             result = response.json()
             text_response = self._extract_text_response(result)
             if text_response:
@@ -292,7 +305,7 @@ PREGUNTA:
                 stream=True
             ) as response:
                 if response.status_code != 200:
-                    raise Exception(f"Error: {response.text}")
+                    raise Exception(self._format_ollama_http_error(response.status_code, response.text, "chat"))
 
                 emitted_chars = 0
                 thinking_chars = 0
